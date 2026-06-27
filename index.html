@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qual é sua aesthetic real?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg1:#0a0906;--bg2:#151210;--accent:#d4a96a;--accent2:#f0e6d3;
+  --glass:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.09);
+  --text:#f5efe8;--muted:rgba(245,239,232,0.5)
+}
+body{
+  font-family:'Inter',sans-serif;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,#0d0b08 100%);
+  min-height:100vh;color:var(--text);display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:24px 16px;overflow-x:hidden;position:relative
+}
+.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:drift 10s ease-in-out infinite}
+.orb1{width:300px;height:300px;background:rgba(212,169,106,0.12);top:-80px;left:-80px}
+.orb2{width:240px;height:240px;background:rgba(240,230,211,0.08);bottom:-60px;right:-60px;animation-delay:-5s}
+@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,25px)}}
+
+main{position:relative;z-index:1;width:100%;max-width:480px;display:flex;flex-direction:column;align-items:center;gap:24px}
+
+.badge{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid rgba(212,169,106,.2);border-radius:100px;padding:6px 14px;font-size:12px;color:var(--accent);font-weight:500;letter-spacing:.8px;text-transform:uppercase;backdrop-filter:blur(12px);animation:fadeDown .6s ease}
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
+
+h1{font-family:'Playfair Display',serif;font-size:clamp(24px,6vw,36px);font-weight:700;text-align:center;line-height:1.25;background:linear-gradient(135deg,#f5efe8 0%,var(--accent) 60%,#c8956e 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeUp .7s ease .1s both}
+.subtitle{font-size:15px;color:var(--muted);text-align:center;line-height:1.6;max-width:380px;animation:fadeUp .7s ease .2s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* moodboard cards */
+.moodboard{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;animation:fadeUp .7s ease .25s both}
+.mood-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:16px 14px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
+.mood-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.mood-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,169,106,.08),transparent);opacity:0;transition:opacity .2s}
+.mood-card:hover::before{opacity:1}
+.mood-emoji{font-size:24px;margin-bottom:6px}
+.mood-name{font-size:13px;font-weight:600;color:var(--accent2)}
+.mood-desc{font-size:11px;color:var(--muted);margin-top:3px}
+
+.card{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:24px;backdrop-filter:blur(16px);animation:fadeUp .7s ease .35s both}
+.checks{display:flex;flex-direction:column;gap:12px}
+.check-item{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,239,232,.8)}
+.check-icon{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#c8956e);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px}
+
+.cta-btn{width:100%;padding:17px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent),#c8956e);color:#0a0906;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.2px;animation:fadeUp .7s ease .4s both,pulse 2.4s ease-in-out 1.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,169,106,.4)}70%{box-shadow:0 0 0 14px rgba(212,169,106,0)}}
+
+.social-bar{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:14px 16px;backdrop-filter:blur(12px);animation:fadeUp .7s ease .5s both}
+.bar-label{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between}
+.bar-track{height:6px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden}
+.bar-fill{height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--accent),#c8956e);animation:fill-bar 1.8s ease .8s forwards}
+@keyframes fill-bar{to{width:89%}}
+
+.counter{font-size:13px;color:var(--muted);text-align:center;animation:fadeUp .7s ease .6s both}
+.counter span{color:var(--accent);font-weight:600}
+
+.unlock{width:100%;background:var(--glass);border:1px solid rgba(212,169,106,.15);border-radius:20px;padding:28px 24px;backdrop-filter:blur(16px);text-align:center;animation:fadeUp .7s ease .7s both}
+.unlock h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px}
+.unlock p{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
+.unlock-btn{display:block;width:100%;padding:15px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#c8956e);color:#0a0906;font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer}
+
+footer{font-size:11px;color:rgba(255,255,255,.18);text-align:center;animation:fadeUp .7s ease .8s both}
+</style>
+</head>
+<body>
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<main>
+  <div class="badge">✦ identidade visual</div>
+
+  <h1>Você está usando seu estilo ou tentando ser outra pessoa?</h1>
+
+  <p class="subtitle">Existe uma diferença enorme entre a imagem que você projeta e a que realmente representa quem você é.</p>
+
+  <div class="moodboard">
+    <div class="mood-card">
+      <div class="mood-emoji">🖤</div>
+      <div class="mood-name">Dark & Edge</div>
+      <div class="mood-desc">Intensity, contrast, depth</div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-emoji">🤍</div>
+      <div class="mood-name">Clean Minimal</div>
+      <div class="mood-desc">Less is more, always</div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-emoji">🌿</div>
+      <div class="mood-name">Soft Natural</div>
+      <div class="mood-desc">Earth tones, ease</div>
+    </div>
+    <div class="mood-card">
+      <div class="mood-emoji">✨</div>
+      <div class="mood-name">Bold Creative</div>
+      <div class="mood-desc">Statement, color, chaos</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="checks">
+      <div class="check-item"><div class="check-icon">✓</div>Descubra qual estilo você está fingindo gostar</div>
+      <div class="check-item"><div class="check-icon">✓</div>O que sua aparência revela sobre seus medos</div>
+      <div class="check-item"><div class="check-icon">✓</div>Como construir uma identidade visual autêntica</div>
+      <div class="check-item"><div class="check-icon">✓</div>Mais de 50 mil participantes</div>
+    </div>
+  </div>
+
+  <button class="cta-btn">Ver minha aesthetic verdadeira →</button>
+
+  <div class="social-bar">
+    <div class="bar-label">
+      <span>89% sentem que o resultado as expõe</span>
+      <span id="pct">0%</span>
+    </div>
+    <div class="bar-track"><div class="bar-fill"></div></div>
+  </div>
+
+  <p class="counter"><span id="live-count">16</span> pessoas descobriram sua aesthetic nos últimos 5 minutos</p>
+
+  <div class="unlock">
+    <h2>✨ Ver minha aesthetic verdadeira</h2>
+    <p>Como construir uma identidade visual que realmente pareça você — e parar de se vestir como a pessoa que acha que deveria ser.</p>
+    <a href="[INSERIR LINK DE PAGAMENTO AQUI]" class="unlock-btn">Quero minha análise de estilo →</a>
+  </div>
+
+  <footer>Pode ser desconfortável perceber que você está tentando parecer alguém que nunca quis ser.</footer>
+</main>
+
+<script>
+let n=0;const pct=document.getElementById('pct');
+setTimeout(()=>{const t=setInterval(()=>{n++;pct.textContent=n+'%';if(n>=89)clearInterval(t)},18)},800);
+const el=document.getElementById('live-count');
+setInterval(()=>{el.textContent=Math.max(8,parseInt(el.textContent)+(Math.random()>.5?1:-1))},4600);
+</script>
+</body>
+</html>
