@@ -4,138 +4,161 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Qual é sua aesthetic real?</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg1:#0a0906;--bg2:#151210;--accent:#d4a96a;--accent2:#f0e6d3;
-  --glass:rgba(255,255,255,0.05);--border:rgba(255,255,255,0.09);
-  --text:#f5efe8;--muted:rgba(245,239,232,0.5)
+  --bg:#0F0A0E;--surface:rgba(255,255,255,0.04);--surface2:rgba(255,255,255,0.07);
+  --border:rgba(255,255,255,0.08);--border-hover:rgba(255,255,255,0.18);
+  --pink:#EC4899;--amber:#F59E0B;--rose:#FB7185;
+  --text:#FDF2F8;--muted:#F9A8D4;--dim:#4B5563;
 }
-body{
-  font-family:'Inter',sans-serif;background:linear-gradient(135deg,var(--bg1) 0%,var(--bg2) 50%,#0d0b08 100%);
-  min-height:100vh;color:var(--text);display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:24px 16px;overflow-x:hidden;position:relative
-}
-.orb{position:fixed;border-radius:50%;filter:blur(90px);pointer-events:none;z-index:0;animation:drift 10s ease-in-out infinite}
-.orb1{width:300px;height:300px;background:rgba(212,169,106,0.12);top:-80px;left:-80px}
-.orb2{width:240px;height:240px;background:rgba(240,230,211,0.08);bottom:-60px;right:-60px;animation-delay:-5s}
-@keyframes drift{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,25px)}}
-
-main{position:relative;z-index:1;width:100%;max-width:480px;display:flex;flex-direction:column;align-items:center;gap:24px}
-
-.badge{display:inline-flex;align-items:center;gap:8px;background:var(--glass);border:1px solid rgba(212,169,106,.2);border-radius:100px;padding:6px 14px;font-size:12px;color:var(--accent);font-weight:500;letter-spacing:.8px;text-transform:uppercase;backdrop-filter:blur(12px);animation:fadeDown .6s ease}
-@keyframes fadeDown{from{opacity:0;transform:translateY(-16px)}to{opacity:1;transform:translateY(0)}}
-
-h1{font-family:'Playfair Display',serif;font-size:clamp(24px,6vw,36px);font-weight:700;text-align:center;line-height:1.25;background:linear-gradient(135deg,#f5efe8 0%,var(--accent) 60%,#c8956e 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeUp .7s ease .1s both}
-.subtitle{font-size:15px;color:var(--muted);text-align:center;line-height:1.6;max-width:380px;animation:fadeUp .7s ease .2s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-
-/* moodboard cards */
-.moodboard{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px;animation:fadeUp .7s ease .25s both}
-.mood-card{background:var(--glass);border:1px solid var(--border);border-radius:14px;padding:16px 14px;backdrop-filter:blur(12px);cursor:pointer;transition:border-color .2s,transform .2s;position:relative;overflow:hidden}
-.mood-card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.mood-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,169,106,.08),transparent);opacity:0;transition:opacity .2s}
-.mood-card:hover::before{opacity:1}
-.mood-emoji{font-size:24px;margin-bottom:6px}
-.mood-name{font-size:13px;font-weight:600;color:var(--accent2)}
-.mood-desc{font-size:11px;color:var(--muted);margin-top:3px}
-
-.card{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:24px;backdrop-filter:blur(16px);animation:fadeUp .7s ease .35s both}
-.checks{display:flex;flex-direction:column;gap:12px}
-.check-item{display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(245,239,232,.8)}
-.check-icon{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#c8956e);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:11px}
-
-.cta-btn{width:100%;padding:17px;border:none;border-radius:14px;background:linear-gradient(135deg,var(--accent),#c8956e);color:#0a0906;font-size:16px;font-weight:700;cursor:pointer;letter-spacing:.2px;animation:fadeUp .7s ease .4s both,pulse 2.4s ease-in-out 1.2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,169,106,.4)}70%{box-shadow:0 0 0 14px rgba(212,169,106,0)}}
-
-.social-bar{width:100%;background:var(--glass);border:1px solid var(--border);border-radius:12px;padding:14px 16px;backdrop-filter:blur(12px);animation:fadeUp .7s ease .5s both}
-.bar-label{font-size:12px;color:var(--muted);margin-bottom:8px;display:flex;justify-content:space-between}
-.bar-track{height:6px;background:rgba(255,255,255,.07);border-radius:100px;overflow:hidden}
-.bar-fill{height:100%;width:0;border-radius:100px;background:linear-gradient(90deg,var(--accent),#c8956e);animation:fill-bar 1.8s ease .8s forwards}
-@keyframes fill-bar{to{width:89%}}
-
-.counter{font-size:13px;color:var(--muted);text-align:center;animation:fadeUp .7s ease .6s both}
-.counter span{color:var(--accent);font-weight:600}
-
-.unlock{width:100%;background:var(--glass);border:1px solid rgba(212,169,106,.15);border-radius:20px;padding:28px 24px;backdrop-filter:blur(16px);text-align:center;animation:fadeUp .7s ease .7s both}
-.unlock h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:8px}
-.unlock p{font-size:13px;color:var(--muted);margin-bottom:20px;line-height:1.5}
-.unlock-btn{display:block;width:100%;padding:15px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#c8956e);color:#0a0906;font-size:15px;font-weight:700;text-decoration:none;border:none;cursor:pointer}
-
-footer{font-size:11px;color:rgba(255,255,255,.18);text-align:center;animation:fadeUp .7s ease .8s both}
+html{scroll-behavior:smooth}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 70% 50% at 20% 10%,rgba(236,72,153,.14) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 80% 90%,rgba(245,158,11,.10) 0%,transparent 60%)}
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
+.wrap{position:relative;z-index:1;width:100%;max-width:460px}
+.screen{display:none;flex-direction:column}
+.screen.active{display:flex;animation:up .45s cubic-bezier(.16,1,.3,1)}
+@keyframes up{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.prog-row{display:flex;align-items:center;gap:14px;margin-bottom:44px}
+.prog-track{flex:1;height:3px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--pink),var(--amber));border-radius:3px;transition:width .6s cubic-bezier(.4,0,.2,1);box-shadow:0 0 10px rgba(236,72,153,.5)}
+.prog-txt{font-size:12px;color:var(--dim);font-weight:500;flex-shrink:0}
+.q-tag{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:#F9A8D4;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:16px}
+.q-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--pink);animation:blink 1.8s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.q-text{font-size:clamp(20px,5vw,26px);font-weight:700;color:var(--text);line-height:1.3;letter-spacing:-.4px;margin-bottom:32px}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{background:var(--surface);border:1.5px solid var(--border);border-radius:16px;padding:18px 20px;font-size:15px;color:var(--muted);cursor:pointer;text-align:left;line-height:1.5;transition:all .2s cubic-bezier(.4,0,.2,1);-webkit-tap-highlight-color:transparent;position:relative;overflow:hidden;backdrop-filter:blur(8px)}
+.opt::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(236,72,153,.08),rgba(245,158,11,.04));opacity:0;transition:opacity .2s;border-radius:inherit}
+.opt:hover{border-color:var(--border-hover);color:var(--text);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.opt:hover::before{opacity:1}
+.opt:active{transform:translateY(0);transition-duration:.08s}
+.opt.sel{background:linear-gradient(135deg,rgba(236,72,153,.2),rgba(245,158,11,.1));border-color:rgba(236,72,153,.5);color:var(--text);transform:translateY(-2px);box-shadow:0 8px 32px rgba(236,72,153,.2)}
+.opt.sel::after{content:'✓';position:absolute;right:18px;top:50%;transform:translateY(-50%);width:24px;height:24px;background:linear-gradient(135deg,var(--pink),var(--amber));border-radius:50%;font-size:11px;font-weight:700;color:#fff;animation:pop .25s cubic-bezier(.16,1,.3,1);display:flex;align-items:center;justify-content:center;text-align:center;line-height:24px}
+@keyframes pop{from{transform:translateY(-50%) scale(0)}to{transform:translateY(-50%) scale(1)}}
+#sl{align-items:center;justify-content:center;min-height:60vh;gap:22px}
+.spin{width:46px;height:46px;border:2px solid rgba(255,255,255,.06);border-top-color:var(--pink);border-right-color:var(--amber);border-radius:50%;animation:spin .8s linear infinite;box-shadow:0 0 20px rgba(236,72,153,.3)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.dots{display:flex;gap:7px}
+.dots i{display:block;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.15);animation:dot .9s ease-in-out infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,80%,100%{transform:scale(.6);background:rgba(255,255,255,.15)}40%{transform:scale(1);background:var(--pink)}}
+.ltxt{font-size:14px;color:var(--dim)}
+#sr{gap:14px}
+.r-hero{background:linear-gradient(135deg,rgba(236,72,153,.2) 0%,rgba(251,113,133,.12) 50%,rgba(245,158,11,.1) 100%);border:1px solid rgba(236,72,153,.25);border-radius:22px;padding:30px 26px;backdrop-filter:blur(16px);animation:up .45s cubic-bezier(.16,1,.3,1)}
+.r-eyebrow{font-size:11px;font-weight:600;color:#F9A8D4;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:12px}
+.r-name{font-size:clamp(28px,7vw,36px);font-weight:800;letter-spacing:-.8px;line-height:1.1;margin-bottom:16px;background:linear-gradient(135deg,#FDF2F8,#F9A8D4,#FCD34D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.r-desc{font-size:15px;color:var(--muted);line-height:1.7}
+.r-pts{background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:24px 22px;display:flex;flex-direction:column;gap:16px;backdrop-filter:blur(12px);animation:up .45s cubic-bezier(.16,1,.3,1) .08s both}
+.rp{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--muted);line-height:1.6}
+.rp-icon{width:24px;height:24px;border-radius:8px;flex-shrink:0;margin-top:1px;background:linear-gradient(135deg,rgba(236,72,153,.3),rgba(245,158,11,.2));border:1px solid rgba(236,72,153,.2);display:flex;align-items:center;justify-content:center;font-size:11px;color:#F9A8D4}
+.r-cta{background:var(--surface2);border:1px solid var(--border);border-radius:22px;padding:26px;backdrop-filter:blur(16px);animation:up .45s cubic-bezier(.16,1,.3,1) .16s both}
+.cta-tag{font-size:11px;font-weight:600;color:var(--dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px}
+.cta-h{font-size:20px;font-weight:700;letter-spacing:-.3px;margin-bottom:5px}
+.cta-s{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.55}
+.cta-checks{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.cta-check{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted)}
+.cta-check-dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;background:linear-gradient(135deg,var(--pink),var(--amber));display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;font-weight:700}
+.cta-btn{display:block;width:100%;padding:17px;background:linear-gradient(135deg,var(--pink) 0%,var(--rose) 50%,var(--amber) 100%);border:none;border-radius:14px;font-size:15px;font-weight:700;color:#fff;cursor:pointer;text-decoration:none;text-align:center;font-family:inherit;position:relative;overflow:hidden;transition:transform .2s,box-shadow .2s;animation:pulse-btn 3s ease-in-out infinite}
+.cta-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent)}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 16px 48px rgba(236,72,153,.4)}
+@keyframes pulse-btn{0%,100%{box-shadow:0 0 0 0 rgba(236,72,153,.4)}50%{box-shadow:0 0 0 10px rgba(236,72,153,0)}}
+.cta-price{font-size:12px;color:var(--dim);text-align:center;margin-top:12px}
 </style>
 </head>
 <body>
-<div class="orb orb1"></div>
-<div class="orb orb2"></div>
+<div class="bg-glow"></div><div class="bg-grid"></div>
+<div class="wrap">
 
-<main>
-  <div class="badge">✦ identidade visual</div>
-
-  <h1>Você está usando seu estilo ou tentando ser outra pessoa?</h1>
-
-  <p class="subtitle">Existe uma diferença enorme entre a imagem que você projeta e a que realmente representa quem você é.</p>
-
-  <div class="moodboard">
-    <div class="mood-card">
-      <div class="mood-emoji">🖤</div>
-      <div class="mood-name">Dark & Edge</div>
-      <div class="mood-desc">Intensity, contrast, depth</div>
-    </div>
-    <div class="mood-card">
-      <div class="mood-emoji">🤍</div>
-      <div class="mood-name">Clean Minimal</div>
-      <div class="mood-desc">Less is more, always</div>
-    </div>
-    <div class="mood-card">
-      <div class="mood-emoji">🌿</div>
-      <div class="mood-name">Soft Natural</div>
-      <div class="mood-desc">Earth tones, ease</div>
-    </div>
-    <div class="mood-card">
-      <div class="mood-emoji">✨</div>
-      <div class="mood-name">Bold Creative</div>
-      <div class="mood-desc">Statement, color, chaos</div>
-    </div>
+<div class="screen active" id="s1">
+  <div class="prog-row"><div class="prog-track"><div class="prog-fill" style="width:16%"></div></div><span class="prog-txt">1 / 6</span></div>
+  <div class="q-tag"><div class="q-tag-dot"></div>Pergunta 01</div>
+  <div class="q-text">Quando você abre o guarda-roupa, o que sente?</div>
+  <div class="opts">
+    <div class="opt" onclick="pick(this,1,'A')">Tenho muita roupa mas nunca nada para usar.</div>
+    <div class="opt" onclick="pick(this,1,'B')">Visto sempre as mesmas peças — o resto existe mas não uso.</div>
+    <div class="opt" onclick="pick(this,1,'C')">Comprei muita coisa inspirada em alguém e não me vejo nelas.</div>
+    <div class="opt" onclick="pick(this,1,'D')">Meu guarda-roupa é funcional mas não tem nada a ver comigo.</div>
   </div>
+</div>
 
-  <div class="card">
-    <div class="checks">
-      <div class="check-item"><div class="check-icon">✓</div>Descubra qual estilo você está fingindo gostar</div>
-      <div class="check-item"><div class="check-icon">✓</div>O que sua aparência revela sobre seus medos</div>
-      <div class="check-item"><div class="check-icon">✓</div>Como construir uma identidade visual autêntica</div>
-      <div class="check-item"><div class="check-icon">✓</div>Mais de 50 mil participantes</div>
-    </div>
+<div class="screen" id="s2">
+  <div class="prog-row"><div class="prog-track"><div class="prog-fill" style="width:33%"></div></div><span class="prog-txt">2 / 6</span></div>
+  <div class="q-tag"><div class="q-tag-dot"></div>Pergunta 02</div>
+  <div class="q-text">Quando você se arruma, o que passa pela sua cabeça?</div>
+  <div class="opts">
+    <div class="opt" onclick="pick(this,2,'A')">"Será que vão achar estranho?"</div>
+    <div class="opt" onclick="pick(this,2,'B')">"Isso é eu ou estou tentando ser outra pessoa?"</div>
+    <div class="opt" onclick="pick(this,2,'C')">Não penso — visto o de sempre para não errar.</div>
+    <div class="opt" onclick="pick(this,2,'D')">Me arrumo para mim — não me importo com o que vão achar.</div>
   </div>
+</div>
 
-  <button class="cta-btn">Ver minha aesthetic verdadeira →</button>
-
-  <div class="social-bar">
-    <div class="bar-label">
-      <span>89% sentem que o resultado as expõe</span>
-      <span id="pct">0%</span>
-    </div>
-    <div class="bar-track"><div class="bar-fill"></div></div>
+<div class="screen" id="s3">
+  <div class="prog-row"><div class="prog-track"><div class="prog-fill" style="width:50%"></div></div><span class="prog-txt">3 / 6</span></div>
+  <div class="q-tag"><div class="q-tag-dot"></div>Pergunta 03</div>
+  <div class="q-text">Qual ambiente você sente mais como seu?</div>
+  <div class="opts">
+    <div class="opt" onclick="pick(this,3,'A')">Lugares minimalistas, limpos, sem excesso.</div>
+    <div class="opt" onclick="pick(this,3,'B')">Ambientes caóticos, criativos, com muita personalidade.</div>
+    <div class="opt" onclick="pick(this,3,'C')">Natureza — longe de tudo artificial.</div>
+    <div class="opt" onclick="pick(this,3,'D')">Lugares escuros, alternativos, com identidade forte.</div>
   </div>
+</div>
 
-  <p class="counter"><span id="live-count">16</span> pessoas descobriram sua aesthetic nos últimos 5 minutos</p>
-
-  <div class="unlock">
-    <h2>✨ Ver minha aesthetic verdadeira</h2>
-    <p>Como construir uma identidade visual que realmente pareça você — e parar de se vestir como a pessoa que acha que deveria ser.</p>
-    <a href="[INSERIR LINK DE PAGAMENTO AQUI]" class="unlock-btn">Quero minha análise de estilo →</a>
+<div class="screen" id="s4">
+  <div class="prog-row"><div class="prog-track"><div class="prog-fill" style="width:66%"></div></div><span class="prog-txt">4 / 6</span></div>
+  <div class="q-tag"><div class="q-tag-dot"></div>Pergunta 04</div>
+  <div class="q-text">Quando você vê alguém com um estilo muito marcante, pensa:</div>
+  <div class="opts">
+    <div class="opt" onclick="pick(this,4,'A')">"Admiro, mas nunca teria coragem."</div>
+    <div class="opt" onclick="pick(this,4,'B')">"Queria ter essa segurança."</div>
+    <div class="opt" onclick="pick(this,4,'C')">"Que exagero — não precisava tanto."</div>
+    <div class="opt" onclick="pick(this,4,'D')">"Cada um com o seu."</div>
   </div>
+</div>
 
-  <footer>Pode ser desconfortável perceber que você está tentando parecer alguém que nunca quis ser.</footer>
-</main>
+<div class="screen" id="s5">
+  <div class="prog-row"><div class="prog-track"><div class="prog-fill" style="width:83%"></div></div><span class="prog-txt">5 / 6</span></div>
+  <div class="q-tag"><div class="q-tag-dot"></div>Pergunta 05</div>
+  <div class="q-text">Qual palavra define como você quer se sentir com sua imagem?</div>
+  <div class="opts">
+    <div class="opt" onclick="pick(this,5,'A')">Confortável.</div>
+    <div class="opt" onclick="pick(this,5,'B')">Marcante.</div>
+    <div class="opt" onclick="pick(this,5,'C')">Autêntico.</div>
+    <div class="opt" onclick="pick(this,5,'D')">Invisível — mas do jeito certo.</div>
+  </div>
+</div>
 
+<div class="screen" id="s6">
+  <div class="prog-row"><div class="prog-track"><div class="prog-fill" style="width:100%"></div></div><span class="prog-txt">6 / 6</span></div>
+  <div class="q-tag"><div class="q-tag-dot"></div>Pergunta 06</div>
+  <div class="q-text">Se você pudesse se vestir sem julgamento nenhum, como seria?</div>
+  <div class="opts">
+    <div class="opt" onclick="pick(this,6,'A')">Igual ao que uso agora — já me sinto bem.</div>
+    <div class="opt" onclick="pick(this,6,'B')">Muito mais ousado e marcante.</div>
+    <div class="opt" onclick="pick(this,6,'C')">Mais simples — menos é mais.</div>
+    <div class="opt" onclick="pick(this,6,'D')">Completamente diferente do que mostro hoje.</div>
+  </div>
+</div>
+
+<div class="screen" id="sl"><div class="spin"></div><div class="dots"><i></i><i></i><i></i></div><div class="ltxt">Revelando sua aesthetic verdadeira...</div></div>
+<div class="screen" id="sr"></div>
+</div>
 <script>
-let n=0;const pct=document.getElementById('pct');
-setTimeout(()=>{const t=setInterval(()=>{n++;pct.textContent=n+'%';if(n>=89)clearInterval(t)},18)},800);
-const el=document.getElementById('live-count');
-setInterval(()=>{el.textContent=Math.max(8,parseInt(el.textContent)+(Math.random()>.5?1:-1))},4600);
+const ans={};
+const P={
+  A:{name:'Soft Minimal ✦',desc:'Você valoriza o conforto e a leveza — mas existe uma linha tênue entre o minimalismo consciente e o medo de errar. Sua aesthetic real pede simplicidade com intenção, não invisibilidade por segurança.',pts:['Você tem bom gosto, mas subestima o que isso representa.','Prefere não chamar atenção — mas parte disso é medo, não escolha.','Seu estilo pode ser simples e ainda ter identidade forte.','O que te trava: confundir conforto com apagamento.']},
+  B:{name:'Bold Creative ✦',desc:'Você tem uma identidade visual poderosa esperando para ser expressa. A sua maior dificuldade não é falta de estilo — é permissão. Você sabe exatamente quem é, mas ainda hesita em mostrar.',pts:['Você tem referências claras, mas raramente as usa de verdade.','A coragem que admira nos outros já existe em você.','Seu estilo pede presença — não precisa de aprovação para isso.','O que te trava: esperar o momento certo que nunca chega.']},
+  C:{name:'Authentic Natural ✦',desc:'Você quer que sua imagem seja uma extensão honesta de quem você é — sem performance, sem filtro. Sua aesthetic real é sobre essência, não tendência.',pts:['Você se sente fora do lugar quando a roupa não combina com o humor.','Tendências não te interessam — você quer estilo atemporal.','Seu estilo fala mais em silêncio do que a maioria fala em barulho.','O que te trava: achar que "simples" não é estilo — quando é o maior de todos.']},
+  D:{name:'Dark Editorial ✦',desc:'Você tem uma aesthetic intensa, com camadas — e raramente a mostra com totalidade. Por fora parece neutro; por dentro existe um estilo com muita identidade que ainda espera permissão para aparecer.',pts:['Você se veste de forma diferente do que realmente gosta.','Tem referências visuais claras, mas as guarda para você.','O estilo que admira parece "demais" para o dia a dia — mas não é.','O que te trava: a percepção de que intensidade é excesso, quando na verdade é identidade.']}
+};
+function pick(el,q,opt){el.parentElement.querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');ans[q]=opt;setTimeout(()=>go(q),400)}
+function go(q){document.getElementById('s'+q).classList.remove('active');if(q<6){document.getElementById('s'+(q+1)).classList.add('active')}else{document.getElementById('sl').classList.add('active');setTimeout(result,2200)}}
+function result(){const c={A:0,B:0,C:0,D:0};Object.values(ans).forEach(v=>c[v]++);const top=Object.entries(c).sort((a,b)=>b[1]-a[1])[0][0];const p=P[top];const icons=['◆','◈','◉','◇'];
+document.getElementById('sr').innerHTML=`<div class="r-hero"><div class="r-eyebrow">Sua aesthetic real</div><div class="r-name">${p.name}</div><div class="r-desc">${p.desc}</div></div><div class="r-pts">${p.pts.map((pt,i)=>`<div class="rp"><div class="rp-icon">${icons[i]}</div><span>${pt}</span></div>`).join('')}</div><div class="r-cta"><div class="cta-tag">Guia de estilo</div><div class="cta-h">Ver minha aesthetic verdadeira</div><div class="cta-s">Guia completo para construir uma identidade visual que realmente pareça você.</div><div class="cta-checks"><div class="cta-check"><div class="cta-check-dot">✓</div>Análise completa do seu estilo</div><div class="cta-check"><div class="cta-check-dot">✓</div>Referências visuais para o seu tipo</div><div class="cta-check"><div class="cta-check-dot">✓</div>Como montar seu guarda-roupa cápsula</div><div class="cta-check"><div class="cta-check-dot">✓</div>Acesso imediato</div></div><a href="[INSERIR LINK DE PAGAMENTO AQUI]" class="cta-btn">Quero meu guia de estilo →</a><div class="cta-price">Acesso imediato · R$ 19,90</div></div>`;
+document.getElementById('sl').classList.remove('active');document.getElementById('sr').classList.add('active')}
 </script>
 </body>
 </html>
